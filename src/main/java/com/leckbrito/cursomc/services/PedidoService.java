@@ -78,7 +78,10 @@ public class PedidoService {
 		
 		//enviar e-mail de teste
 		//System.out.println(obj);
-		emailService.sendOrderConfirmationEmail(obj);
+		
+		//17/11/2018 - aula 63
+		//emailService.sendOrderConfirmationEmail(obj);
+		emailService.sendOrderConfirmationHtmlEmail(obj);
 		
 		return obj;
 	}
