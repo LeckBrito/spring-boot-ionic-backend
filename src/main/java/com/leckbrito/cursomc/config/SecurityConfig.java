@@ -19,6 +19,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.leckbrito.cursomc.security.JWTAuthenticationFilter;
+import com.leckbrito.cursomc.security.JWTAuthorizationFilter;
 import com.leckbrito.cursomc.security.JWTUtil;
 
 @Configuration
@@ -58,6 +59,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.anyRequest().authenticated();
 		
 		http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));//Em SecurityConfig, registrar o filtro de autenticação 
+		
+		http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService));//Em SecurityConfig, registrar o filtro de autorização
 		
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
